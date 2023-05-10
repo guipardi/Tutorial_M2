@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Sqlite" id="Project-db9" database="Sqlite" >
+	<schema name="Default" >
+		<table name="TblEntrada" >
+			<column name="CodigoDeEntrada" type="INTEGER" jt="4" mandatory="y" />
+			<index name="pk_TblEntrada" unique="PRIMARY_KEY" >
+				<column name="CodigoDeEntrada" />
+			</index>
+			<fk name="fk_tblentrada_tblexperiecia" to_schema="Default" to_table="TblExperiecia" >
+				<fk_column name="CodigoDeEntrada" pk="CodigoDeEntrada" />
+			</fk>
+			<fk name="fk_tblentrada_tblformacao" to_schema="Default" to_table="TblFormacao" >
+				<fk_column name="CodigoDeEntrada" pk="CodigoDeEntrada" />
+			</fk>
+			<fk name="fk_tblentrada_tblhabilidades" to_schema="Default" to_table="TblHabilidades" >
+				<fk_column name="CodigoDeEntrada" pk="CodigoDeEntrada" />
+			</fk>
+			<fk name="fk_tblentrada" to_schema="Default" to_table="TblInformacoesPrincipais" >
+				<fk_column name="CodigoDeEntrada" pk="CodigoDeEntrada" />
+			</fk>
+			<fk name="fk_tblentrada_tblpersonalidade" to_schema="Default" to_table="TblPersonalidade" >
+				<fk_column name="CodigoDeEntrada" pk="CodigoDeEntrada" />
+			</fk>
+			<fk name="fk_tblentrada_tblrealizacoes" to_schema="Default" to_table="TblRealizacoes" >
+				<fk_column name="CodigoDeEntrada" pk="CodigoDeEntrada" />
+			</fk>
+			<fk name="fk_tblentrada_tblsobremim" to_schema="Default" to_table="TblSobreMim" >
+				<fk_column name="CodigoDeEntrada" pk="CodigoDeEntrada" />
+			</fk>
+		</table>
+		<table name="TblExperiecia" >
+			<column name="CodigoDeEntrada" type="INTEGER" jt="4" mandatory="y" />
+			<column name="NomeDaEmpresa" type="CHAR" length="200" jt="1" />
+			<column name="AnoInicial" type="INTEGER" jt="4" />
+			<column name="AnoFinal" type="INTEGER" jt="4" />
+			<column name="Cargo" type="CHAR" length="200" jt="1" />
+			<column name="Descricao" type="CHAR" length="300" jt="1" />
+			<index name="pk_TblExperiecia" unique="PRIMARY_KEY" >
+				<column name="CodigoDeEntrada" />
+			</index>
+		</table>
+		<table name="TblFormacao" >
+			<column name="CodigoDeEntrada" type="INTEGER" jt="4" mandatory="y" />
+			<column name="Curso" type="CHAR" length="200" jt="1" />
+			<column name="AnoInicial" type="INTEGER" length="100" jt="4" />
+			<column name="AnoFinal" type="INTEGER" length="100" jt="4" />
+			<column name="Descricao" type="CHAR" length="350" jt="1" />
+			<index name="pk_TblFormacao" unique="PRIMARY_KEY" >
+				<column name="CodigoDeEntrada" />
+			</index>
+		</table>
+		<table name="TblHabilidades" >
+			<column name="CodigoDeEntrada" type="INTEGER" jt="4" mandatory="y" />
+			<column name="Habilidade" type="CHAR" length="100" jt="1" />
+			<column name="Nivel" type="INTEGER" jt="4" />
+			<index name="pk_TblHabilidades" unique="PRIMARY_KEY" >
+				<column name="CodigoDeEntrada" />
+			</index>
+		</table>
+		<table name="TblInformacoesPrincipais" >
+			<column name="CodigoDeEntrada" type="INTEGER" jt="4" mandatory="y" />
+			<column name="SeuNome" type="CHAR" length="300" jt="1" />
+			<column name="Cargo" type="CHAR" length="200" jt="1" />
+			<column name="SuaFoto" type="BLOB" jt="2004" />
+			<index name="pk_TblInformacoesPrincipais" unique="PRIMARY_KEY" >
+				<column name="CodigoDeEntrada" />
+			</index>
+		</table>
+		<table name="TblPersonalidade" >
+			<column name="CodigoDeEntrada" type="INTEGER" jt="4" mandatory="y" />
+			<column name="Personalidade" type="CHAR" length="150" jt="1" />
+			<column name="Nivel" type="INTEGER" jt="4" />
+			<index name="pk_TblPersonalidade" unique="PRIMARY_KEY" >
+				<column name="CodigoDeEntrada" />
+			</index>
+		</table>
+		<table name="TblRealizacoes" >
+			<column name="CodigoDeEntrada" type="INTEGER" jt="4" mandatory="y" />
+			<column name="Realizacao" type="CHAR" length="200" jt="1" />
+			<column name="Ano" type="INTEGER" jt="4" />
+			<column name="Descricao" type="CHAR" length="300" jt="1" />
+			<index name="pk_TblRealizacoes" unique="PRIMARY_KEY" >
+				<column name="CodigoDeEntrada" />
+			</index>
+		</table>
+		<table name="TblSobreMim" >
+			<column name="CodigoDeEntrada" type="INTEGER" jt="4" mandatory="y" />
+			<column name="Endereço" type="CHAR" length="250" jt="1" />
+			<column name="Telefone" type="INTEGER" jt="4" />
+			<column name="Email" type="CHAR" length="200" jt="1" />
+			<column name="Descricao" type="CHAR" length="350" jt="1" />
+			<index name="pk_TblSobreMim" unique="PRIMARY_KEY" >
+				<column name="CodigoDeEntrada" />
+			</index>
+		</table>
+	</schema>
+	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.40.0.0.jar" driver_desc="Standard" host="localhost" port="7210" instance="C:/Users/Inteli/Desktop/ponderadaSemana2/BancoDeDados.db" useSystemProxy="false" />
+	<layout name="Main Layout" id="Layout-f01" show_relation="columns" >
+		<entity schema="Default" name="TblEntrada" color="C1D8EE" x="48" y="144" />
+		<entity schema="Default" name="TblExperiecia" color="C1D8EE" x="768" y="112" />
+		<entity schema="Default" name="TblFormacao" color="C1D8EE" x="544" y="48" />
+		<entity schema="Default" name="TblHabilidades" color="C1D8EE" x="608" y="336" />
+		<entity schema="Default" name="TblInformacoesPrincipais" color="C1D8EE" x="256" y="80" />
+		<entity schema="Default" name="TblPersonalidade" color="C1D8EE" x="816" y="336" />
+		<entity schema="Default" name="TblRealizacoes" color="C1D8EE" x="128" y="352" />
+		<entity schema="Default" name="TblSobreMim" color="C1D8EE" x="384" y="368" />
+	</layout>
+</project>
