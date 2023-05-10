@@ -26,7 +26,7 @@
             let saida = '';
             usuarios.map(function(TblInformacoesPrincipais) {
             saida += '<strong> '+ `${TblInformacoesPrincipais.SeuNome}` + '</strong> ' + `${TblInformacoesPrincipais.Cargo}`;
-            saida += ' - <a href="/atualizaCliente?CodigoDeEntrada=' + `${TblInformacoesPrincipais.CodigoDeEntrada}` + '">EDITAR</a>';
+            saida += ' - <a href="/atualizar.html?CodigoDeEntrada=' + `${TblInformacoesPrincipais.CodigoDeEntrada}` + '">EDITAR</a>';
             saida += ' | <a href="/removeUsuario?CodigoDeEntrada='+`${TblInformacoesPrincipais.CodigoDeEntrada}`+'">REMOVER</a></br>';
             });
             document.getElementById('resultado').innerHTML = saida;

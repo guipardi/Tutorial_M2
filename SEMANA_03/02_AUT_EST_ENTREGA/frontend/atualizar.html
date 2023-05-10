@@ -9,9 +9,9 @@
   <h1>Atualização de Usuário</h1>
 
   <form name="form1" method="post" action="/atualizaCliente">
-    SEU NOME: <input type="text" id="seuNome" name="seuNome" value="">
+    SEU NOME: <input type="text" id="seuNome" name="SeuNome" value="">
     <br>
-    CARGO: <input type="text" id="cargo" name="cargo" value="">
+    CARGO: <input type="text" id="cargo" name="Cargo" value="">
     <br>
     <input type="hidden" id="CodigoDeEntrada" name="CodigoDeEntrada" value="">
 
@@ -28,13 +28,13 @@
       return response.json();
     })
     .then((data) => {
-      let Clientes = data;
+      let clientes = data;
 
       
-      Clientes.map(function(TblInformacoesPrincipais) {
-                    document.getElementById('CodigoDeEntrada').value = TblInformacoesPrincipais;
-                    document.getElementById('SeuNome').value = TblInformacoesPrincipais.SeuNome;
-                    document.getElementById('Cargo').value = TblInformacoesPrincipais.Cargo;
+      clientes.map((cliente) => {
+                    document.getElementById('CodigoDeEntrada').value = cliente.CodigoDeEntrada;
+                    document.getElementById('seuNome').value = cliente.SeuNome;
+                    document.getElementById('cargo').value = cliente.Cargo;
                 });
                 alert(response.json());
     })
