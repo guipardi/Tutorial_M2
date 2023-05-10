@@ -8,41 +8,38 @@
   </head>
   <h1>Atualização de Usuário</h1>
 
-    <form name="form1" method="post" action="http://localhost:3000/atualizaRegistro">
-        CÓDIGO: <input type="text" id="codigo" name="codigo" size="50" value="">
-        <br>
-        ENDEREÇO: <input type="text" id="endereco" name="endereco" value="">
-        <br>
-        TELEFONE: <input type="text" id="telefone" name="telefone" value="">
-        <br>
-        EMAIL: <input type="text" id="email" name="email" value="">
-        <br>
-        DESCRIÇÃO: <input type="text" id="descricao" name="descricao" value="">
-        <br>
-        <input type="submit" value="ATUALIZAR">  
-    </form>    
+  <form name="form1" method="post" action="http://localhost:3000/atualizaRegistro">
+    CÓDIGO: <input type="text" id="codigo" name="codigo" size="50" value="">
+    <br>
+    SEU NOME: <input type="text" id="seuNome" name="seuNome" value="">
+    <br>
+    CARGO: <input type="text" id="cargo" name="cargo" value="">
+    <br>
+    SUA FOTO: <input type="text" id="suaFoto" name="suaFoto" value="">
+    <br>
+    <input type="submit" value="ATUALIZAR">  
+  </form>    
 
-    <script>
-        let url = new URL(window.location.href);
-        let params = url.searchParams;
-        url = 'http://localhost:3000/atualizaRegistro?codigo='+params.get("codigo");
+  <script>
+    let url = new URL(window.location.href);
+    let params = url.searchParams;
+    url = 'http://localhost:3000/atualizaRegistro?codigo='+params.get("codigo");
 
-        fetch(url)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            let usuario = data[0];
+    fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      let usuario = data[0];
 
-            document.getElementById('codigo').value = usuario.CodigoDeEntrada;
-            document.getElementById('endereco').value = usuario.Endereço;
-            document.getElementById('telefone').value = usuario.Telefone;
-            document.getElementById('email').value = usuario.Email;
-            document.getElementById('descricao').value = usuario.Descricao;
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-    </script>
+      document.getElementById('codigo').value = usuario.CodigoDeEntrada;
+      document.getElementById('seuNome').value = usuario.SeuNome;
+      document.getElementById('cargo').value = usuario.Cargo;
+      document.getElementById('suaFoto').value = usuario.SuaFoto;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  </script>
 </body>
 </html>

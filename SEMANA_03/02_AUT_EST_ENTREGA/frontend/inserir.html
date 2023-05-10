@@ -7,16 +7,12 @@
     <title>INSERIR USUÁRIO</title>
 </head>
 <body>
-<form name="form1" method="post" action="/insereRegistro">
-    CÓDIGO: <input type="text" name="codigo" value="" required>
+<form name="form1" method="post" action="/insereCliente">
+    CÓDIGO: <input type="text" name="CodigoDeEntrada" value="" required>
     <br>
-    ENDEREÇO: <input type="text" name="endereco" value="" required>
+    NOME: <input type="text" name="SeuNome" value="" required>
     <br>
-    TELEFONE: <input type="tel" id="phone" name="telefone" placeholder="11-12345-6789" pattern="[0-9]{2}-[0-9]{5}-[0-9]{4}" required>
-    <br>
-    EMAIL: <input type="email" name="email" value="" required>
-    <br>
-    DESCRIÇÃO: <input type="text" name="descricao" value="" required>
+    CARGO: <input type="text" id="Cargo" name="Cargo" value="" required>
     <br>
     <input type="submit" value="INSERIR">  
 </form>    

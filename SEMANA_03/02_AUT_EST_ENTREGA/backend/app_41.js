@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const sqlite3 = require('sqlite3').verbose();
-const DBPATH = '../data/dbUser.db';
+const DBPATH = '../data/BancoDeDados.db';
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -17,11 +17,11 @@ app.use(express.static("../frontend/"));
 app.use(express.json());
 
 // Retorna todos registros (é o R do CRUD - Read)
-app.get('/registros', (req, res) => {
+app.get('/clientes', (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	var sql = 'SELECT * FROM TblSobreMim ORDER BY CodigoDeEntrada';
+	var sql = 'SELECT * FROM TblInformacoesPrincipais ORDER BY CodigoDeEntrada';
 	db.all(sql, [],  (err, rows ) => {
 		if (err) {
 			throw err;
@@ -32,11 +32,11 @@ app.get('/registros', (req, res) => {
 });
 
 // Insere um registro (é o C do CRUD - Create)
-app.post('/insereRegistro', urlencodedParser, (req, res) => {
+app.post('/insereCliente', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	sql = "INSERT INTO TblSobreMim (CodigoDeEntrada, Endereço, Telefone, Email, Descricao) VALUES ('" + req.body.codigo + "', '" + req.body.endereco + "', '" + req.body.telefone + "', '" + req.body.email + "', '" + req.body.descricao + "')";
+	sql = "INSERT INTO TblInformacoesPrincipais (CodigoDeEntrada, SeuNome, Cargo, SuaFoto) VALUES ('" + req.body.CodigoDeEntrada + "', '" + req.body.SeuNome + "', '" + req.body.Cargo + "')";
 	console.log(sql);
 	db.run(sql, [],  err => {
 		if (err) {
@@ -49,10 +49,10 @@ app.post('/insereRegistro', urlencodedParser, (req, res) => {
 });
 
 // Monta o formulário para o update (é o U do CRUD - Update)
-app.get('/atualizaRegistro', (req, res) => {
+app.get('/atualizaCliente', (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "SELECT * FROM TblSobreMim WHERE CodigoDeEntrada="+ req.query.codigo;
+	sql = "SELECT * FROM TblInformacoesPrincipais WHERE CodigoDeEntrada="+ req.query.CodigoDeEntrada;
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
 	db.all(sql, [],  (err, rows ) => {
@@ -65,10 +65,10 @@ app.get('/atualizaRegistro', (req, res) => {
 });
 
 // Atualiza um registro (é o U do CRUD - Update)
-app.post('/atualizaRegistro', urlencodedParser, (req, res) => {
+app.post('/atualizaCliente', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "UPDATE TblSobreMim SET Endereço='" + req.body.endereco + "', Telefone = '" + req.body.telefone + "' , Email='" + req.body.email + "', Descricao='" + req.body.descricao + "' WHERE CodigoDeEntrada='" + req.body.codigo + "'";
+	sql = "UPDATE TblInformacoesPrincipais SET SeuNome='" + req.body.SeuNome + "', Cargo = '" + req.body.Cargo + "' WHERE CodigoDeEntrada='" + req.body.CodigoDeEntrada + "'";
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
 	db.run(sql, [],  err => {
@@ -78,10 +78,10 @@ app.post('/atualizaRegistro', urlencodedParser, (req, res) => {
 		res.end();
 	});
 	res.write('<p>REGISTRO ATUALIZADO COM SUCESSO!</p><a href="/">VOLTAR</a>');
-	db.close(); // Fecha o banco
+  db.close(); // Fecha o banco
 });
 
 //
 app.listen(port, hostname, () => {
   console.log(`Servidor rodando em http://${hostname}:${port}/`);
-});
+})

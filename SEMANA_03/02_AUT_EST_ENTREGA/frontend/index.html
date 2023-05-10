@@ -9,40 +9,37 @@
   <body>
     <h1>Listagem de Clientes</h1>
     <p><a href="/inserir.html">INSERIR NOVO CLIENTE</a></p>
-
     <table>
       <thead>
         <tr>
           <th>Código de Entrada</th>
-          <th>Endereço</th>
-          <th>Telefone</th>
-          <th>Email</th>
-          <th>Descrição</th>
+          <th>Seu Nome</th>
+          <th>Cargo</th>
+          <th>Sua Foto</th>
           <th>Ação</th>
         </tr>
       </thead>
       <tbody id="resultado">
       </tbody>
     </table>
-
+    
     <script>
-      const url = '/clientes';
+      const url = '/informacoesPrincipais';
     
       fetch(url)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          let clientes = data;
+          let informacoesPrincipais = data;
           let saida = '';
-          clientes.map(function(cliente) {
+          informacoesPrincipais.map(function(info) {
             saida += '<tr>';
-            saida += '<td>'+ `${cliente.codigo_de_entrada}` + '</td>';
-            saida += '<td>'+ `${cliente.endereco}` + '</td>';
-            saida += '<td>'+ `${cliente.telefone}` + '</td>';
-            saida += '<td>'+ `${cliente.email}` + '</td>';
-            saida += '<td>'+ `${cliente.descricao}` + '</td>';
-            saida += '<td><a href="/editarCliente?id=' + `${cliente.id}` + '">Editar</a> | <a href="/removerCliente?id='+`${cliente.id}`+'">Remover</a></td>';
+            saida += '<td>'+ `${info.CodigoDeEntrada}` + '</td>';
+            saida += '<td>'+ `${info.SeuNome}` + '</td>';
+            saida += '<td>'+ `${info.Cargo}` + '</td>';
+            saida += '<td>'+ `${info.SuaFoto}` + '</td>';
+            saida += '<td><a href="/editarCliente?id=' + `${info.id}` + '">Editar</a> | <a href="/removerCliente?id='+`${info.id}`+'">Remover</a></td>';
             saida += '</tr>';
           });
           document.getElementById('resultado').innerHTML = saida;
