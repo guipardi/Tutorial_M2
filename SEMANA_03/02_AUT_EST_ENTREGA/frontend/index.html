@@ -10,43 +10,30 @@
     <h1>Listagem de Clientes</h1>
     <p><a href="/inserir.html">INSERIR NOVO CLIENTE</a></p>
     <table>
-      <thead>
-        <tr>
-          <th>Código de Entrada</th>
-          <th>Seu Nome</th>
-          <th>Cargo</th>
-          <th>Sua Foto</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
       <tbody id="resultado">
       </tbody>
     </table>
     
     <script>
-      const url = '/informacoesPrincipais';
+      const url = '/clientes';
     
       fetch(url)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          let informacoesPrincipais = data;
-          let saida = '';
-          informacoesPrincipais.map(function(info) {
-            saida += '<tr>';
-            saida += '<td>'+ `${info.CodigoDeEntrada}` + '</td>';
-            saida += '<td>'+ `${info.SeuNome}` + '</td>';
-            saida += '<td>'+ `${info.Cargo}` + '</td>';
-            saida += '<td>'+ `${info.SuaFoto}` + '</td>';
-            saida += '<td><a href="/editarCliente?id=' + `${info.id}` + '">Editar</a> | <a href="/removerCliente?id='+`${info.id}`+'">Remover</a></td>';
-            saida += '</tr>';
-          });
-          document.getElementById('resultado').innerHTML = saida;
+            let usuarios = data;
+            let saida = '';
+            usuarios.map(function(TblInformacoesPrincipais) {
+            saida += '<strong> '+ `${TblInformacoesPrincipais.SeuNome}` + '</strong> ' + `${TblInformacoesPrincipais.Cargo}`;
+            saida += ' - <a href="/atualizaCliente?CodigoDeEntrada=' + `${TblInformacoesPrincipais.CodigoDeEntrada}` + '">EDITAR</a>';
+            saida += ' | <a href="/removeUsuario?CodigoDeEntrada='+`${TblInformacoesPrincipais.CodigoDeEntrada}`+'">REMOVER</a></br>';
+            });
+            document.getElementById('resultado').innerHTML = saida;
         })
         .catch(function(error) {
           console.log(error);
-        });
+      });
     </script>
   </body>
 </html>

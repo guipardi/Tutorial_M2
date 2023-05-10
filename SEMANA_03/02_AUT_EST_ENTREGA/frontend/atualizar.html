@@ -8,34 +8,35 @@
   </head>
   <h1>Atualização de Usuário</h1>
 
-  <form name="form1" method="post" action="http://localhost:3000/atualizaRegistro">
-    CÓDIGO: <input type="text" id="codigo" name="codigo" size="50" value="">
-    <br>
+  <form name="form1" method="post" action="/atualizaCliente">
     SEU NOME: <input type="text" id="seuNome" name="seuNome" value="">
     <br>
     CARGO: <input type="text" id="cargo" name="cargo" value="">
     <br>
-    SUA FOTO: <input type="text" id="suaFoto" name="suaFoto" value="">
-    <br>
+    <input type="hidden" id="CodigoDeEntrada" name="CodigoDeEntrada" value="">
+
     <input type="submit" value="ATUALIZAR">  
   </form>    
 
   <script>
     let url = new URL(window.location.href);
     let params = url.searchParams;
-    url = 'http://localhost:3000/atualizaRegistro?codigo='+params.get("codigo");
+    url = '/atualizaCliente?CodigoDeEntrada='+params.get("CodigoDeEntrada");
 
     fetch(url)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      let usuario = data[0];
+      let Clientes = data;
 
-      document.getElementById('codigo').value = usuario.CodigoDeEntrada;
-      document.getElementById('seuNome').value = usuario.SeuNome;
-      document.getElementById('cargo').value = usuario.Cargo;
-      document.getElementById('suaFoto').value = usuario.SuaFoto;
+      
+      Clientes.map(function(TblInformacoesPrincipais) {
+                    document.getElementById('CodigoDeEntrada').value = TblInformacoesPrincipais;
+                    document.getElementById('SeuNome').value = TblInformacoesPrincipais.SeuNome;
+                    document.getElementById('Cargo').value = TblInformacoesPrincipais.Cargo;
+                });
+                alert(response.json());
     })
     .catch(function(error) {
       console.log(error);

@@ -36,7 +36,7 @@ app.post('/insereCliente', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	sql = "INSERT INTO TblInformacoesPrincipais (CodigoDeEntrada, SeuNome, Cargo, SuaFoto) VALUES ('" + req.body.CodigoDeEntrada + "', '" + req.body.SeuNome + "', '" + req.body.Cargo + "')";
+	sql = "INSERT INTO TblInformacoesPrincipais (SeuNome, Cargo) VALUES ('" + req.body.SeuNome + "', '" + req.body.Cargo + "')";
 	console.log(sql);
 	db.run(sql, [],  err => {
 		if (err) {
@@ -78,6 +78,22 @@ app.post('/atualizaCliente', urlencodedParser, (req, res) => {
 		res.end();
 	});
 	res.write('<p>REGISTRO ATUALIZADO COM SUCESSO!</p><a href="/">VOLTAR</a>');
+  db.close(); // Fecha o banco
+});
+
+app.get('/removeUsuario', urlencodedParser, (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+  sql = "DELETE FROM TblInformacoesPrincipais WHERE CodigoDeEntrada='" + req.query.CodigoDeEntrada + "'";
+  console.log(sql);
+  var db = new sqlite3.Database(DBPATH); // Abre o banco
+  db.run(sql, [],  err => {
+      if (err) {
+          throw err;
+      }
+      res.write('<p>USUARIO REMOVIDO COM SUCESSO!</p><a href="/">VOLTAR</a>');
+      res.end();
+  });
   db.close(); // Fecha o banco
 });
 
