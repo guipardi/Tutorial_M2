@@ -1,0 +1,122 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #ccc;
+}
+
+.imgAndInfoGuilherme {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15rem;
+}
+
+.imgGuilherme {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 999px;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.aside {
+  margin-left: 3rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cardFormacao,
+.cardExperiencia,
+.cardRealizacoes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cardFormacao h1,
+.cardExperiencia h1,
+.cardRealizacoes h1 {
+  color: blue;
+  font-size: 2.5rem;
+}
+
+.sobreMim {
+  margin-top: 2rem;
+  margin-right: 3rem;
+}
+
+.sobreMim h1 {
+  color: blue;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sobreMim p {
+  font-size: 1.115rem;
+  text-align: center;
+}
+
+.sobreMim .descricao {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+.sobreMim h3 {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+.sobreMim ul {
+  text-align: center;
+  font-size: 1.115rem;
+  list-style: none;
+  margin-top: 1.115rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+/* Estilos para tela de celular */
+@media (max-width: 767px) {
+  .imgAndInfoGuilherme {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .imgGuilherme {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .mainContainer {
+    flex-direction: column;
+  }
+
+  .aside {
+    margin: 2rem 0;
+  }
+}
+
+/* Estilos para tela de tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .imgAndInfoGuilherme {
+    gap: 10rem;
+  }
+}
