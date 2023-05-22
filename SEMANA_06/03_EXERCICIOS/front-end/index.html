@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Currículo | Guilherme P.</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+  <header class="header">
+    <div class="imgAndInfoGuilherme">
+      <img src="assets/imgGuilherme.jpeg" alt="Foto do Guilherme" class="imgGuilherme">
+      <div class="infoGuilherme">
+        <h1>Guilherme Pardi Borges</h1>
+        <p>Estudante do curso Ciências da computação</p>
+      </div>
+    </div>
+  </header>
+  <div class="mainContainer">
+    <aside class="aside">
+      <div class="cardFormacao">
+        <h1>Formações</h1>
+        <div class="formacao">
+          <h4>CURSO | 2018 - 2020</h4>
+          <p>Curso de Web desenvolvimento | Rocketseat</p>
+        </div>
+        <div class="formacao">
+          <h4>CURSO | 2020 - 2022</h4>
+          <p>Curso de Back-End | Rocketseat</p>
+        </div>
+      </div>
+      <div class="cardExperiencia">
+        <h1>Experiências</h1>
+        <div class="experiencia">
+          <h4>Suri Corporation | 2022 - Hoje</h4>
+          <p>Atuo como desenvovedor Full-Stack para a empresa</p>
+        </div>
+      </div>
+      <div class="cardRealizacoes">
+        <h1>Realizações</h1>
+        <div class="realizacao">
+          <h4>Lorem Ipsum</h4>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis quis labore?</p>
+        </div>
+      </div>
+    </aside>
+
+    <section class="sobreMim">
+      <h1>Sobre mim</h1>
+      <p>Endereço: Rua M.M.D.C, 80. Butantã</p>
+      <p>Telefone: (34)99778-0017</p>
+      <p>guilhermepardi@gmail.com</p>
+
+      <p class="descricao">Comecei estudando programação na pandemia. <br>Estudando Python, depois passei para área de Web Desenvolvimento<br> e continuei adquirindo conhecimento por meio de cursos em plataformas online.</p>
+    
+      <h1 class="tecnologias">Tecnologias:</h1>
+      <ul>
+        <li>Node.JS</li>
+        <li>React.JS</li>
+        <li>React Native</li>
+        <li>JavaScript</li>
+        <li>TypeScript</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="changeColor">
+    <label for="cor-h1">Escolha a cor principal do site:</label>
+    <input type="color" id="cor-h1">
+  </div>
+
+
+
+  <script>
+    $(document).ready(function() {
+      $('.header').before('<h1 class="hello-message">Olá, Léo!</h1>');
+      setTimeout(function() {
+        $('.hello-message').remove();
+      }, 3000);
+    });
+  </script>
+  
+  <script>
+    $(document).ready(function() {
+      $('#cor-h1').change(function() {
+        var corSelecionada = $(this).val();
+        $('h1').css('color', corSelecionada);
+      });
+    });
+  </script>
+  
+</body>
+</html>
