@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Currículo | Guilherme P.</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+  <header class="header">
+    <div class="imgAndInfoGuilherme">
+      <img src="assets/imgGuilherme.jpeg" alt="Foto do Guilherme" class="imgGuilherme">
+      <div class="infoGuilherme">
+        <h1>Guilherme Pardi Borges</h1>
+        <p>Estudante do curso Ciências da computação</p>
+      </div>
+    </div>
+  </header>
+  <div class="mainContainer">
+    <aside class="aside">
+      <div class="cardFormacao">
+        <h1>Formações</h1>
+        <div class="formacao" id="formacoes">
+          <!-- Os dados das formações serão adicionados aqui -->
+        </div>
+      </div>
+      <div class="cardExperiencia">
+        <h1>Experiências</h1>
+        <div class="experiencia" id="experiencias">
+          <!-- Os dados das experiências serão adicionados aqui -->
+        </div>
+      </div>
+      <div class="cardRealizacoes">
+        <h1>Realizações</h1>
+        <div class="realizacao" id="realizacoes">
+          <!-- Os dados das realizações serão adicionados aqui -->
+        </div>
+      </div>
+    </aside>
+
+    <section class="sobreMim">
+      <h1>Sobre mim</h1>
+      <p>Endereço: Rua M.M.D.C, 80. Butantã</p>
+      <p>Telefone: (34)99778-0017</p>
+      <p>guilhermepardi@gmail.com</p>
+
+      <p class="descricao">Comecei estudando programação na pandemia. <br>Estudando Python, depois passei para área de Web Desenvolvimento<br> e continuei adquirindo conhecimento por meio de cursos em plataformas online.</p>
+    
+      <h1 class="tecnologias">Tecnologias:</h1>
+      <ul>
+        <li>Node.JS</li>
+        <li>React.JS</li>
+        <li>React Native</li>
+        <li>JavaScript</li>
+        <li>TypeScript</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="changeColor">
+    <label for="cor-h1">Escolha a cor principal do site:</label>
+    <input type="color" id="cor-h1">
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      function carregarDados(endpoint, containerId) {
+        $.ajax({
+          url: endpoint,
+          method: "GET",
+          success: function(response) {
+            console.log(response); 
+            
+            
+            var container = $("#" + containerId);
+            
+            
+            container.empty();
+
+            
+            for (var j = 0; j < response.length; j++) {
+              var item = response[j];
+              var html = '<h4>' + item.titulo + '</h4><p>' + item.descricao + '</p>';
+              container.append(html);
+            }
+          },
+          error: function(xhr, status, error) {
+            console.log("Ocorreu um erro: " + error);
+          }
+        });
+      }
+
+      // Chama a função para carregar os dados ao carregar a página
+      carregarDados('http://localhost:3000/clientes/formacao', 'formacoes');
+      carregarDados('http://localhost:3000/clientes/experiencia', 'experiencias');
+      carregarDados('http://localhost:3000/clientes/realizacoes', 'realizacoes');
+
+      $('#cor-h1').change(function() {
+        var corSelecionada = $(this).val();
+        $('h1').css('color', corSelecionada);
+      });
+    });
+  </script>
+  
+</body>
+</html>
